@@ -1,0 +1,61 @@
+[
+    {
+        "date": "2022-9-20",
+        "type": "Mood",
+        "scores": [
+            2
+        ],
+        "notes": "I accidentally ate a whole bag of chips today. It slipped into my mouth. I swear!",
+        "tags": [
+            {
+                "type": "Emotions",
+                "entries": [
+                    "joy",
+                    "sadness",
+                    "fear",
+                    "disgust"
+                ]
+            }
+        ]
+    },
+    {
+        "date": "2022-9-21",
+        "type": "Mood",
+        "scores": [
+            3
+        ],
+        "notes": "I'm feeling pretty good today. I'm going to try to eat better.",
+        "tags": [
+            {
+                "type": "Emotions",
+                "entries": [
+                    "joy",
+                    "disgust"
+                ]
+            }
+        ]
+    },
+    {
+        "date": "2025-12-31",
+        "type": "Mood",
+        "scores": [
+            1
+        ],
+        "notes": "Christmas was a disaster.\n I ate too much and now I feel sick.",
+        "tags": [
+            {
+                "type": "Emotions",
+                "entries": []
+            }
+        ]
+    },
+    {
+        "date": "2019-1-1",
+        "type": "Mood",
+        "scores": [
+            5
+        ],
+        "notes": "Another day, another dollar.",
+        "tags": []
+    }
+]
