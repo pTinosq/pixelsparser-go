@@ -1,6 +1,7 @@
 package pixelsparser
 
 import (
+	"os"
 	"path/filepath"
 	"testing"
 	"time"
@@ -64,4 +65,47 @@ func mustParse(date string) time.Time {
 		panic(err)
 	}
 	return t
+}
+
+func TestLoad_FileNotFound(t *testing.T) {
+	_, err := Load("test_data/nonexistent.json")
+	if err == nil {
+		t.Fatal("expected error for non-existent file, got nil")
+	}
+}
+
+func TestLoad_InvalidJSON(t *testing.T) {
+	path := filepath.Join("test_data", "invalid.json")
+	err := os.WriteFile(path, []byte(`{this is not valid JSON}`), 0644)
+	if err != nil {
+		t.Fatalf("failed to write invalid.json: %v", err)
+	}
+	defer os.Remove(path)
+
+	_, err = Load(path)
+	if err == nil {
+		t.Fatal("expected JSON unmarshal error, got nil")
+	}
+}
+
+func TestLoad_InvalidDateFormat(t *testing.T) {
+	path := filepath.Join("test_data", "bad_date.json")
+	err := os.WriteFile(path, []byte(`[
+		{
+			"date": "2022/09/20",
+			"type": "Mood",
+			"scores": [2],
+			"notes": "bad date",
+			"tags": []
+		}
+	]`), 0644)
+	if err != nil {
+		t.Fatalf("failed to write bad_date.json: %v", err)
+	}
+	defer os.Remove(path)
+
+	_, err = Load(path)
+	if err == nil {
+		t.Fatal("expected date parse error, got nil")
+	}
 }
